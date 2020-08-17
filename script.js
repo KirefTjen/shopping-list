@@ -1,42 +1,68 @@
-var button = document.getElementById('enter');
-var button2 = document.getElementById('Done');
-var input = document.getElementById('userinput');
-var ul = document.querySelector('ul');
+var addBtn = document.getElementById('add');
+var input = document.getElementById('userInput');
+var ul = document.getElementsByTagName('ul')[0];
 
-function inputLength() {
-	return input.value.length;
+// Check length of input field
+function addItemLength() {
+	return document.getElementById('userInput').value.length;
 }
-
-function createListElement() {
+// Check how many li elements exist
+function checkLis() {
+	return document.getElementsByTagName('li').length;
+}
+//create new list item
+function createListItem() {
+	// Create li element, style it and append it to ul
 	var li = document.createElement('li');
-	li.appendChild(document.createTextNode(input.value));
+	li.classList.add('listItem');
+	li.append(document.createTextNode(input.value));
+	li.addEventListener('click', toggleDone);
 	ul.appendChild(li);
 	input.value = '';
-}
 
-function addListAfterClick() {
-	if (inputLength() > 0) {
-		createListElement();
+	// Create delete button, style it and append it to li
+	var delBtn = document.createElement('button');
+	var delX = document.createElement('i');
+	delX.classList.add('fas', 'fa-times');
+	delBtn.classList.add('custBtn');
+	delBtn.appendChild(delX);
+	delBtn.addEventListener('click', delItem);
+	li.append(delBtn);
+
+	// Hide empty list text if li's exist
+	if (checkLis() > 0) {
+		var emptyList = document.querySelector('h2');
+		emptyList.style.display = 'none';
+	}
+
+	// Toggle line-through on click
+	function toggleDone() {
+		li.classList.toggle('done');
+	}
+
+	// Delete item
+	function delItem() {
+		li.remove();
+		if (checkLis() == 0) {
+			var emptyList = document.querySelector('h2');
+			emptyList.style.display = 'block';
+		}
 	}
 }
 
-function addListAfterKeypress(event) {
-	if (inputLength() > 0 && event.keyCode === 13) {
-		createListElement();
+// On click
+function addClick() {
+	if (addItemLength() > 0) {
+		createListItem();
 	}
 }
 
-function doneList() {
-	var li = document.getElementsById('list');
-	if (li.className === 'done2') {
-		li.className = 'done';
-	} else {
-		li.className = 'done2';
+// On keypress enter
+function addKey(event) {
+	if (addItemLength() > 0 && event.keyCode == 13) {
+		createListItem();
 	}
 }
 
-button2.addEventListener('click', doneList);
-
-button.addEventListener('click', addListAfterClick);
-
-input.addEventListener('keypress', addListAfterKeypress);
+addBtn.addEventListener('click', addClick);
+input.addEventListener('keypress', addKey);
