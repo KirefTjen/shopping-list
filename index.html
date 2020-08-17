@@ -2,24 +2,40 @@
 <html>
 	<head>
 		<title>Javascript + DOM</title>
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+		<link
+			rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+			integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+			crossorigin="anonymous"
+		/>
 		<link rel="stylesheet" type="text/css" href="./style.css" />
+		<script type="text/javascript" src="script.js"></script>
 	</head>
 	<body>
 		<div class="container">
 			<div class="header text-center">
-				<h1 class>Shopping List</h1>
+				<h1>Shopping lists</h1>
 			</div>
 			<div class="row">
 				<div class="listInput col-md-5 col-sm-12">
-					<div class="inputArea">
-						<input id="userInput" type="text" placeholder="Add New Item" onfocus="this.placeholder = ''" onblur="this.placeholder='Add New Item'" >
-						<button id="add"><i class="fas fa-angle-right"></i></button>
+					<div id="inputArea">
+						<input id="userInput" type="text" placeholder="Add new item" />
+						<button id="add" class="custBtn">
+							<i class="fas fa-angle-right"></i>
+						</button>
 					</div>
+				</div>
+				<div class="mainList col-md-7 col-sm-12">
+					<ul>
+						<h2 class="empty text-center">Empty List</h2>
+					</ul>
 				</div>
 			</div>
 		</div>
 		<script type="text/javascript" src="script.js"></script>
-		<script src="https://kit.fontawesome.com/75aa3e2305.js" crossorigin="anonymous"></script>
+		<script
+			src="https://kit.fontawesome.com/75aa3e2305.js"
+			crossorigin="anonymous"
+		></script>
 	</body>
 </html>
